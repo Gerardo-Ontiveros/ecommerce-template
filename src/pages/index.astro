@@ -2,34 +2,44 @@
 import Layout from "@layouts/Layout.astro";
 import ProductCard from "@components/ProductCard.astro";
 import Section from "@components/Section.astro";
-import products from "@data/productos.json";
-
-const data = products;
+import { supabase } from "@lib/supabase";
 
 type Product = {
   cod_producto: number;
-  nombre: string;
-  descripcion: string;
-  precio: number;
-  imagen: string;
+  name: string;
+  description: string;
+  price: number;
+  image: string;
   linkPago: string;
 };
+let { data: productos, error } = await supabase.from("productos").select("*");
 
-const productos: Product[] = data.Productos;
+if (error) {
+  console.error("Error al obtener los productos:", error);
+  productos = [];
+}
+
+if (!productos) {
+  productos = [];
+}
 ---
 
 <Layout>
   <Section>
     {
-      productos.map((producto) => (
-        <ProductCard
-          name={producto.nombre}
-          description={producto.descripcion}
-          price={producto.precio.toFixed(2)}
-          image={producto.imagen}
-          linkPago={producto.linkPago}
-        />
-      ))
+      productos.length > 0 ? (
+        productos.map((producto: Product) => (
+          <ProductCard
+            name={producto.name}
+            description={producto.description}
+            price={producto.price}
+            image={producto.image}
+            linkPago={producto.linkPago}
+          />
+        ))
+      ) : (
+        <p>No hay productos actualmente</p>
+      )
     }
   </Section>
 </Layout>
