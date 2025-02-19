@@ -1,0 +1,12 @@
+{
+  "Productos": [
+    {
+      "cod_producto": 5000,
+      "nombre": "Picafresas",
+      "descripcion": "Dulce de fresa",
+      "precio": 5.0,
+      "imagen": "/picafresa.png",
+      "linkPago": "https://mpago.la/28YABMz"
+    }
+  ]
+}

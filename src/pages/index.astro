@@ -1,11 +1,35 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import Layout from "@layouts/Layout.astro";
+import ProductCard from "@components/ProductCard.astro";
+import Section from "@components/Section.astro";
+import products from "@data/productos.json";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const data = products;
+
+type Product = {
+  cod_producto: number;
+  nombre: string;
+  descripcion: string;
+  precio: number;
+  imagen: string;
+  linkPago: string;
+};
+
+const productos: Product[] = data.Productos;
 ---
 
 <Layout>
-	<Welcome />
+  <Section>
+    {
+      productos.map((producto) => (
+        <ProductCard
+          name={producto.nombre}
+          description={producto.descripcion}
+          price={producto.precio.toFixed(2)}
+          image={producto.imagen}
+          linkPago={producto.linkPago}
+        />
+      ))
+    }
+  </Section>
 </Layout>

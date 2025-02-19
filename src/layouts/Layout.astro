@@ -1,22 +1,44 @@
+---
+import "../styles/global.css";
+import Header from "@components/Header.astro";
+import Footer from "@components/Footer.astro";
+---
+
 <!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.png" />
+    <meta name="generator" content={Astro.generator} />
+    <title>ElectroShop</title>
+  </head>
+  <body class="flex flex-col min-h-screen">
+    <main class="flex-grow">
+      <Header />
+      <slot />
+      <a
+        href="https://wa.me/526771135160?text=Hola, necesito información"
+        target="_blank"
+        class="fixed bottom-40 right-0 bg-[#25d366] text-white w-16 h-16 rounded-full flex justify-center items-center shadow-lg z-50 md:right-20"
+      >
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+          alt="WhatsApp"
+          class="w-10 h-10"
+        />
+      </a>
+    </main>
+    <Footer />
+  </body>
 </html>
 
 <style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
+  html,
+  body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #383838;
+  }
 </style>
